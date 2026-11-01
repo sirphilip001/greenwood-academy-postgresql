@@ -1,57 +1,65 @@
-Greenwood Academy — SQL Database & Querying Project
-This repository contains a full PostgreSQL script (greenwood_academy.sql) covering core Data Definition Language (DDL), Data Manipulation Language (DML), and Data Querying tasks for a school database management system.
+# Greenwood Academy PostgreSQL Database Project
 
-Project Overview
-The project models a high school database for Greenwood Academy, tracking students, academic subjects, and examination performance across various forms.
+A beginner-friendly PostgreSQL project for practicing database creation, table changes, sample data management, filtering, and basic analysis with a fictional secondary-school dataset.
 
-Schema & Tables Structure
-students: Personal details (names, gender, date of birth, class, city).
+## Project overview
 
-subjects: Course catalog (department, teacher, credit hours).
+The SQL script builds a `greenwood_academy` schema with three tables:
 
-exam_results: Performance tracking (student scores, dates, grades).
+| Table | Purpose |
+| --- | --- |
+| `students` | Student names, gender, date of birth, class, and city |
+| `subjects` | Subject names, departments, teachers, and credit hours |
+| `exam_results` | Student marks, exam dates, and recorded grades |
 
-Key Topics Covered
-Database Setup & DDL (CREATE, ALTER, DROP)
+The script inserts sample records for 10 students, 10 subjects, and 10 exam results, then demonstrates updates and a deletion. It includes 30 numbered exercises covering:
 
-Schema creation and search path configuration.
+- Creating a schema and tables, then altering table columns
+- Inserting, updating, and deleting records
+- Selecting and filtering rows with `WHERE`, `AND`, `OR`, and comparison operators
+- Searching and matching values with `BETWEEN`, `IN`, `NOT IN`, and `LIKE`
+- Counting records with `COUNT`
+- Categorizing marks and students with `CASE`
 
-Table design with PRIMARY KEY, NOT NULL, and UNIQUE constraints.
+## Repository contents
 
-Modifying table structures via column addition, renaming, and deletion.
+```text
+.
+├── README.md
+└── greenwood_academy.sql
+```
 
-Data Manipulation & Maintenance (INSERT, UPDATE, DELETE)
+## Requirements
 
-Populating initial mock records for students, subjects, and exam results.
+- PostgreSQL
+- `psql`, pgAdmin, DBeaver, or another PostgreSQL-compatible SQL client
 
-Updating record attributes (city relocation, mark corrections).
+## Run the script
 
-Removing cancelled records.
+The script creates the `greenwood_academy` schema inside the database you connect to. For example, create a practice database and run the script with `psql`:
 
-Data Analysis & Filtering (WHERE, Operators, Pattern Matching)
+```bash
+createdb greenwood_practice
+psql -d greenwood_practice -f greenwood_academy.sql
+```
 
-Conditional logic (AND, OR, NOT IN).
+Alternatively, connect to an existing practice database in `psql` and run:
 
-Range filtering (BETWEEN).
+```text
+\i /path/to/greenwood_academy.sql
+```
 
-Text pattern matching (LIKE wildcard searches).
+In a graphical SQL client, open the script, connect to a practice database, and execute it there.
 
-Aggregations (COUNT).
+> **Run once in a disposable database.** This is a sequential learning script, not a migration designed for repeated execution. It creates the schema without `IF NOT EXISTS`, inserts fixed IDs, drops the temporary `phone_number` column, updates records, and deletes exam result `9`. Running it again in the same database will fail or encounter existing data.
 
-Conditional classification (CASE WHEN expressions for performance labeling).
+## Data model
 
-How to Run the Script
-Prerequisites
-PostgreSQL installed and running locally.
+The tables use primary keys (`student_id`, `subject_id`, and `result_id`). Exam results contain student and subject IDs that refer to rows in the other tables, but the current script does not define foreign-key constraints. It also does not enforce mark ranges or calculate grades automatically; grades are inserted as sample values.
 
-Access to psql shell or a SQL GUI client (DBeaver, pgAdmin, VS Code PostgreSQL extension).
+## Learning notes
 
-Execution Instructions via psql
-Open your terminal and connect to PostgreSQL:
+This repository is an educational exercise using fictional sample data. The script demonstrates basic table structure and query patterns rather than a production-ready school information system.
 
-Bash
-psql -U postgres -d postgres
-Run the script directly from your directory:
+`
 
-SQL
-\i greenwood_academy.sql

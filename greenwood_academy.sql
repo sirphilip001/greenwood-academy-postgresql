@@ -141,7 +141,7 @@ where class = 'Form 3' and city = 'Nairobi';
 --Q20. Write a query to find all students who are in Form 2 OR Form 4.
 select first_name,last_name,class
 from greenwood_academy.students
-where class = 'Form 3' or class = 'Form 4';
+where class = 'Form 2' or class = 'Form 4';
 
 
 --SECTION D - Range, Membership & Search Operators
@@ -163,7 +163,7 @@ where city in ('Nairobi','Mombasa','Kisumu');
 --Q24. Write a query to find all students who are NOT in Form 2 or Form 3 - use NOT IN.
 select first_name,last_name,class
 from greenwood_academy.students
-where class not in('Form 3','Form 4');
+where class not in ('Form 2', 'Form 3');
 
 --Q25. Write a query to find all students whose first name starts with the letter 'A' or 'E' - use LIKE.
 select first_name
@@ -200,7 +200,7 @@ select marks,
 	      when marks >= 40 then 'Pass'
 	      else 'Fail'
        end
-   as column_performance
+   as performance
    from greenwood_academy.exam_results;
 
 --Q30. Write a query using CASE WHEN to label each student as:
@@ -212,5 +212,5 @@ select first_name,last_name,class,
 	      when class = 'Form 3' or class = 'Form 4' then 'Senior'
 	      when class = 'Form 2' or class = 'Form 1' then 'Junior'
        end
-   asstudent_level
+   as student_level
    from greenwood_academy.students;
